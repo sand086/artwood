@@ -1,0 +1,91 @@
+<?php
+
+namespace App\Services;
+
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Log;
+
+use App\Models\{{NombreModulo}};
+use App\Repositories\{{NombreModulo}}Repository;
+
+class {{NombreModulo}}Service
+{
+    protected {{NombreModulo}}Repository ${{nombreModulo}}Repository;
+
+    public function __construct({{NombreModulo}}Repository ${{nombreModulo}}Repository)
+    {
+        $this->{{nombreModulo}}Repository = ${{nombreModulo}}Repository;
+    }
+
+    /**
+     * Genera la data para la DataTable.
+     *
+     * @param array $columns
+     * @param array $actionsConfig
+     * @param string $module
+     * @param string $keyName
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getDataTable(array $columns, array $actionsConfig, string $module, string $keyName, array $filters = [])
+    {
+        $query = $this->{{nombreModulo}}Repository->queryDataTable($filters);
+
+        $actionsCallback = function ($row) use ($actionsConfig, $module, $keyName) {
+            return view('components.datatable-actions', compact('row', 'actionsConfig', 'module', 'keyName'))->render();
+        };
+
+        return DataTables::of($query)
+            ->addColumn('action', $actionsCallback)
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
+    /**
+     * Crea un nuevo registro.
+     *
+     * @param array $data
+     * @return {{NombreModulo}}
+     */
+    public function create(array $data): {{NombreModulo}}
+    {
+        try {
+            return $this->{{nombreModulo}}Repository->create($data);
+        } catch (\Exception $e) {
+            Log::error('Error al crear registro: ' . $e->getMessage());
+            throw $e;
+        }
+    }
+
+    /**
+     * Actualiza un registro.
+     *
+     * @param {{NombreModulo}} $modelo
+     * @param array $data
+     * @return bool
+     */
+    public function update({{NombreModulo}} $modelo, array $data): bool
+    {
+        try {
+            return $this->{{nombreModulo}}Repository->update($modelo, $data);
+        } catch (\Exception $e) {
+            Log::error('Error al actualizar registro: ' . $e->getMessage());
+            throw $e;
+        }
+    }
+
+    /**
+     * Elimina un registro.
+     *
+     * @param {{NombreModulo}} $modelo
+     * @return bool|null
+     */
+    public function delete({{NombreModulo}} $modelo)
+    {
+        try {
+            return $this->{{nombreModulo}}Repository->delete($modelo);
+        } catch (\Exception $e) {
+            Log::error('Error al eliminar registro: ' . $e->getMessage());
+            throw $e;
+        }
+    }
+}

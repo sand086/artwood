@@ -1,0 +1,48 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite",
+        "update:css_node": "copy-preline-modules.bat"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.20",
+        "axios": "^1.7.4",
+        "laravel-vite-plugin": "^1.2.0",
+        "postcss": "^8.5.3",
+        "tailwindcss": "^3.4.17",
+        "vite": "^6.0.11"
+    },
+    "dependencies": {
+        "@codemirror/basic-setup": "^0.20.0",
+        "@codemirror/lang-html": "^6.4.9",
+        "@codemirror/state": "^6.5.2",
+        "@codemirror/view": "^6.38.1",
+        "@preline/datatable": "^3.0.0",
+        "@preline/file-upload": "^3.0.0",
+        "@preline/overlay": "^2.6.0",
+        "@preline/pin-input": "^3.0.0",
+        "@preline/theme-switch": "^2.5.2",
+        "@preline/toggle-password": "^2.5.2",
+        "alpinejs": "^3.14.8",
+        "apexcharts": "^4.7.0",
+        "bootstrap": "^5.3.2",
+        "datatables.net": "^2.2.2",
+        "datatables.net-buttons": "^3.2.2",
+        "datatables.net-buttons-dt": "^3.2.2",
+        "datatables.net-dt": "^2.2.2",
+        "datatables.net-responsive": "^3.0.4",
+        "datatables.net-responsive-dt": "^3.0.4",
+        "dropzone": "^6.0.0-beta.2",
+        "jquery": "^3.7.1",
+        "jszip": "^3.10.1",
+        "lodash": "^4.17.21",
+        "lucide": "^0.476.0",
+        "nprogress": "^0.2.0",
+        "pdfmake": "^0.2.18",
+        "preline": "^2.7.0",
+        "select2": "^4.1.0-rc.0",
+        "sweetalert2": "^11.6.13"
+    }
+}

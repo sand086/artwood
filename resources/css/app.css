@@ -1,0 +1,17 @@
+@import "./base.css";
+@import "./components.css";
+@import "./utilities.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    /** Clase maestra para item activo del sidebar */
+    .sidebar-active {
+        @apply bg-[rgb(225,231,243)] font-semibold;
+    }
+}
+[x-cloak] {
+    display: none !important;
+}

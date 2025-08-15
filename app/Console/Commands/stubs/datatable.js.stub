@@ -1,0 +1,95 @@
+import $ from 'jquery';
+// import DataTable from 'datatables.net-dt';
+import moduleConfig from './config';
+
+let moduloTable;
+
+export function initDataTable() {
+    moduloTable = $(`#${moduleConfig.moduleTable}`).DataTable({
+        processing: true,
+        serverSide: true,
+        responsive: true,
+        scrollCollapse: true,
+        ajax: {
+            url: moduleConfig.baseUrl,
+            type: 'GET',
+            async: true,
+        },
+        columns: [
+            {{dataTableColumns}}
+        ],
+        language: {
+            url: '/lang/datatables/es-ES.json'
+        },
+        oLanguage: {
+            oPaginate: {
+                sFirst: '<i class="fas fa-angle-double-left"></i>',
+                sPrevious: '<i class="fas fa-angle-left"></i>',
+                sNext: '<i class="fas fa-angle-right"></i>',
+                sLast: '<i class="fas fa-angle-double-right"></i>'
+            }
+        },
+        dom: `
+            <"sm:flex sm:items-center sm:justify-between mb-4"B>
+            <"sm:flex sm:items-center sm:justify-between"
+                <"flex items-center justify-start"l>
+                <"flex items-center justify-end"f>
+            >
+            <"mt-4"rt>
+            <"sm:flex sm:items-center sm:justify-between mt-4"
+                <"text-sm text-gray-700"i>
+                <"flex items-center justify-end"p>
+            >`,
+        buttons: [
+            { // ---------------- BTN Copy ----------------
+                extend: 'copy',
+                text: '<i class="fas fa-copy"></i>',
+                titleAttr: 'Copiar',
+            },
+            { // ---------------- BTN Excel ----------------
+                extend: 'excel',
+                text: '<i class="fas fa-file-excel"></i>',
+                titleAttr: 'Exportar a Excel',
+            },
+            { // ---------------- BTN PDF ----------------
+                extend: 'pdf',
+                text: '<i class="fas fa-file-pdf"></i>',
+                titleAttr: 'Exportar a PDF',
+            },
+            { // ---------------- Separacion ----------------
+                text: '&nbsp;',
+                className: 'mx-3 h-8 opacity-0 pointer-events-none',
+                enabled: false
+            },
+            { // ---------------- BTN Agregar ----------------
+                text: '<i class="fas fa-plus"></i>',
+                titleAttr: 'Agregar',
+                className: 'btn btn-primary',
+                action: function (e, dt, node, config) {
+                    window.Helpers.toggleModal(moduleConfig.moduleModal);
+                }
+            }
+        ]
+    });
+    return moduloTable;
+}
+
+function renderEstado(data, type, row) {
+    if (type === "display") {
+        switch (row.estado) {
+            case 'A':
+                return 'ACTIVO';
+            case 'I':
+                return 'INACTIVO';
+            case 'E':
+                return 'ELIMINADO';
+            default:
+                return '';
+        }
+    }
+    return data;
+}
+
+export function reloadDataTable() {
+    moduloTable.ajax.reload();
+}

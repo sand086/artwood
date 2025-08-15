@@ -1,0 +1,15 @@
+const config = {
+    moduleName: '{{NombreModulo}}',
+    baseUrl: '/{{nombreModulo}}/',
+    idField: '{{primaryKey}}',
+    formFields: [{{formFields}}],
+    moduleForm: '{{nombreModulo}}Form',
+    moduleTable: '{{nombreModulo}}Table',
+    moduleModal: '{{nombreModulo}}Modal',
+    columns: [
+        {{dataTableColumns}}
+    ],
+};
+
+const {{nombreModulo}}Module = new BaseModule(config);
+{{nombreModulo}}Module.init();

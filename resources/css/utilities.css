@@ -1,0 +1,12 @@
+@layer utilities {
+    .py-2_5 {
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+        top: 4px;
+        position: relative;
+    }
+
+    .z-60 {
+        z-index: 60;
+    }
+}

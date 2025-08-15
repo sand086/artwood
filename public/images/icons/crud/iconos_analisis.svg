@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Iconos" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #263a4e;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M25.02,0C11.24,0,0,11.25,0,24.99s11.24,25.01,25.02,25.01,24.98-11.23,24.98-25.01S38.75,0,25.02,0ZM19.28,36.23h-8.28v-14.82h8.28v14.82ZM29.31,36.23h-8.28v-19.76h8.28v19.76ZM39,36.23h-7.92V11.53h7.92v24.7Z"/>
+</svg>

@@ -1,0 +1,33 @@
+const config = {
+    moduleName: "EstadosPaises",
+    baseUrl: "/estadospaises/",
+    idField: "estado_pais_id",
+    formFields: ["nombre", "pais_id"],
+    moduleForm: "estadospaisesForm",
+    moduleTable: "estadospaisesTable",
+    moduleModal: "estadospaisesModal",
+    columns: [
+        { data: "nombre", name: "nombre", title: "Nombre" },
+        { data: "pais_id", name: "pais_id", title: "Pais" },
+        {
+            data: "estado",
+            name: "estado",
+            title: "Estado",
+            render: "renderEstado",
+            className: "text-center align-middle",
+            headerClass: "text-center",
+        },
+        {
+            data: "action",
+            name: "action",
+            title: "Acciones",
+            orderable: false,
+            searchable: false,
+            className: "text-center align-middle",
+            headerClass: "text-center",
+        },
+    ],
+};
+
+const estadospaisesModule = new BaseModule(config);
+estadospaisesModule.init();

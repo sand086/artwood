@@ -1,0 +1,10 @@
+@layer base {
+    body {
+        font-family: theme("fontFamily.sans");
+        font-size: 16px;
+        line-height: 1.5;
+        color: #818d99;
+        font-weight: 400;
+        letter-spacing: -0.2px;
+    }
+}

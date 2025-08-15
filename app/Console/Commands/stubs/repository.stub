@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Models\{{NombreModulo}};
+use Illuminate\Database\Eloquent\Builder;
+
+class {{NombreModulo}}Repository extends BaseRepository
+{
+    public function __construct({{NombreModulo}} $model)
+    {
+        parent::__construct($model);
+    }
+
+    public function queryDataTable(array $filters = []): Builder
+    {
+        // return $this->model->select('{{primaryKey}}', {{camposSelect}});
+        return $this->model->newQuery()->select('{{primaryKey}}', {{camposSelect}});
+
+    }
+}

@@ -1,0 +1,48 @@
+import $ from 'jquery';
+import moduleConfig from './config';
+import { handleAjaxError, sendAjaxRequest } from '../../Helpers/utils';
+
+let moduloUrl = moduleConfig.baseUrl;
+let moduloID = '';
+let moduloType = 'POST';
+
+export function initForm(reloadDataTable) {
+    $(`#${moduleConfig.moduleTable}`).on('click', '.editar', function () {
+        const url = $(this).data('url');
+        sendAjaxRequest(url, 'GET', null, (response) => {
+            const data = response.data;
+            moduloUrl = moduleConfig.baseUrl + data.{{primaryKey}};
+            moduloID = data.{{primaryKey}};
+            moduloType = 'PUT';
+            $(`#${moduleConfig.moduleForm}`).attr('data-id', data.{{primaryKey}});
+            $(`#${moduleConfig.moduleForm}`).attr('data-type', 'PUT');
+            $(`#${moduleConfig.moduleForm}`).attr('method', 'PUT');
+            $(`#${moduleConfig.moduleForm}`).attr('action', moduloUrl);
+            moduleConfig.formFields.forEach(field => {
+                $(`#${field}`).val(data[field]);
+                if ($(`#${field}`).hasClass('select2')) {
+                    $(`#${field}`).trigger('change'); // Actualiza Select2
+                }
+            });
+            window.Helpers.toggleModal(moduleConfig.moduleModal);
+        }, handleAjaxError);
+    });
+
+    $(`#${moduleConfig.moduleForm}`).on('submit', function (e) {
+        e.preventDefault();
+        const form = document.getElementById(moduleConfig.moduleForm);
+        const formData = new FormData(form);
+        formData.append('{{primaryKey}}', moduloID);
+        formData.append('_method', moduloType);
+
+        sendAjaxRequest(moduloUrl, 'POST', formData, (response) => {
+            moduloUrl = moduleConfig.baseUrl;
+            moduloID = '';
+            moduloType = 'POST';
+            window.Helpers.toggleModal(moduleConfig.moduleModal);
+            reloadDataTable();
+            $(`#${moduleConfig.moduleForm}`)[0].reset();
+            Swal.fire('Éxito', response.data.message, 'success');
+        }, handleAjaxError);
+    });
+}

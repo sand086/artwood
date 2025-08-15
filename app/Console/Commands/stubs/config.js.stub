@@ -1,0 +1,8 @@
+export default {
+    moduleName: '{{NombreModulo}}',
+    baseUrl: '/{{nombreModulo}}/',
+    formFields: [{{formFields}}],
+    moduleForm: '{{nombreModulo}}Form',
+    moduleTable: '{{nombreModulo}}Table',
+    moduleModal: '{{nombreModulo}}Modal',
+};

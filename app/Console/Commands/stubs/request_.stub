@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class {{NombreRequest}} extends FormRequest
+{
+    public function rules()
+    {
+        if ($this->boolean('only_status')) {
+            return [
+                'estado' => 'required|in:A,I,E',
+            ];
+        }
+        return [
+            {{rules}}
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            {{messages}}
+        ];
+    }
+}

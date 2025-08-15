@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class {{NombreModulo}}Request extends FormRequest
+{
+    public function authorize(): bool
+    {
+        return true; // O tu lógica de autorización
+    }
+
+    public function rules(): array
+    {
+        return [
+            // Reglas de validación aquí
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            // Mensajes de error personalizados aquí
+        ];
+    }
+}
